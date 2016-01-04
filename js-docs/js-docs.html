@@ -1,0 +1,25 @@
+<head>
+  <title>JS Docs</title>
+</head>
+
+<body>
+  <h1>Javascript Documentation</h1>
+
+  <form class="new-doc">
+    <div>
+      <input type="text" name="name" placeholder="Input name of library/framework" />
+    </div>
+    <div>
+      <input type="text" name="src" placeholder="Input source of icon image" />
+    </div>
+  </form>
+
+  {{#each image}}
+    {{> image}}
+  {{/each}}
+</body>
+
+<template name="doc">
+  <div>{{image}}</div>
+  <div>{{name}}</div>
+</template>
