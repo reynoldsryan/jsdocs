@@ -11,18 +11,21 @@ if (Meteor.isClient) {
   Template.body.events({
     "submit .new-doc": function() {
       event.preventDefault();
-      var src = event.target.src.value;
+
       var name = event.target.name.value;
+      var url = event.target.url.value;
+      var src = event.target.src.value;
 
       Docs.insert({
-        src: src,
         name: name,
+        url: url,
+        src: src,
         createdAt: new Date()
       });
 
-      event.target.src.value = "";
       event.target.name.value = "";
-
+      event.target.url.value = "";
+      event.target.src.value = "";
     }
   });
 

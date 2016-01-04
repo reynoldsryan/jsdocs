@@ -10,16 +10,28 @@
       <input type="text" name="name" placeholder="Input name of library/framework" />
     </div>
     <div>
-      <input type="text" name="src" placeholder="Input source of icon image" />
+      <input type="text" name="url" placeholder="Input URL of library/framework" />
+    </div>
+    <div>
+      <input type="text" name="src" placeholder="Input source URL of library/framework icon image" />
+    </div>
+    <div>
+      <button class="submit">Submit</button>
     </div>
   </form>
 
-  {{#each image}}
-    {{> image}}
-  {{/each}}
+  <ul class='docs'>
+    {{#each docs}}
+    {{> doc}}
+    {{/each}}
+  </ul>
 </body>
 
 <template name="doc">
-  <div>{{image}}</div>
-  <div>{{name}}</div>
+  <li>
+    <a href={{url}}>
+      <img src={{src}} />
+      <h2>{{name}}</h2>
+    </a>
+  </li>
 </template>
