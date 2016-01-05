@@ -3,35 +3,55 @@
 </head>
 
 <body>
-  <h1>Javascript Documentation</h1>
+    <div class='text-left'>
+      {{> loginButtons}}
+    </div>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>Javascript Documentation</h1>
 
-  <form class="new-doc">
-    <div>
-      <input type="text" name="name" placeholder="Input name of library/framework" />
-    </div>
-    <div>
-      <input type="text" name="url" placeholder="Input URL of library/framework" />
-    </div>
-    <div>
-      <input type="text" name="src" placeholder="Input source URL of library/framework icon image" />
-    </div>
-    <div>
-      <button class="submit">Submit</button>
-    </div>
-  </form>
+      {{#if currentUser}}
+      <label class="show-favorited">
+        <input type="checkbox" checked='{{showFavorited}}' />
+        Show Favorites Only
+      </label>
 
-  <ul class='docs'>
-    {{#each docs}}
-    {{> doc}}
-    {{/each}}
-  </ul>
+      <form class="new-doc">
+        <div>
+          <input type="text" name="name" placeholder="Name (e.g., Angular, React, Underscore)" />
+        </div>
+        <div>
+          <input type="text" name="url" placeholder="URL of documentation" />
+        </div>
+        <div>
+          <input type="text" name="src" placeholder="Source URL of icon image" />
+        </div>
+        <div>
+          <button class="submit">Submit</button>
+        </div>
+      </form>
+      {{/if}}
+    </div>
+
+
+    {{#if currentUser}}
+    <div class='row'>
+      {{#each docs}}
+      {{> doc}}
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
 </body>
 
 <template name="doc">
-  <li>
+  <div class="col-md-3 portfolio-item">
     <a href={{url}}>
-      <img src={{src}} />
-      <h2>{{name}}</h2>
+      <img class="img-responsive center-block" src={{src}} />
     </a>
-  </li>
+    <h2 class="{{#if checked}}checked{{/if}} text-center">{{name}}</h2>
+    <input type="checkbox" checked='{{checked}}' class='toggle-checked' />
+    <span class="text-center">Favorite?</span>
+    <button class='delete'>&times;</button>
+  </div>
 </template>
