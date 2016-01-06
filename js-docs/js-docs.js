@@ -7,9 +7,9 @@ if (Meteor.isClient) {
   Template.body.helpers({
     docs: function() {
       if (Session.get('showFavorited')) {
-        return Docs.find({checked: true}, {sort: {name: 1}});
+        return Docs.find({checked: true}, {sort: {nameSort: 1}});
       } else {
-        return Docs.find({}, {sort: {name: 1}});
+        return Docs.find({}, {sort: {nameSort: 1}});
       }
     },
     showFavorited: function() {
@@ -22,10 +22,11 @@ if (Meteor.isClient) {
       event.preventDefault();
 
       var name = event.target.name.value;
+      var nameSort = event.target.name.value.toLowerCase();
       var url = event.target.url.value;
       var src = event.target.src.value;
 
-      Meteor.call('addDoc', name, url, src);
+      Meteor.call('addDoc', name, nameSort, url, src);
 
       event.target.name.value = "";
       event.target.url.value = "";
@@ -51,13 +52,14 @@ if (Meteor.isClient) {
 }
 
 Meteor.methods({
-  addDoc: function(name, url, src) {
+  addDoc: function(name, nameSort, url, src) {
     if (! Meteor.userId()) {
       throw new Meteor.Error('not-authorized');
     }
 
     Docs.insert({
       name: name,
+      nameSort: nameSort,
       url: url,
       src: src,
       owner: Meteor.userId(),

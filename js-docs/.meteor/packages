@@ -20,3 +20,5 @@ twbs:bootstrap
 accounts-ui
 accounts-password
 accounts-facebook
+accounts-github
+accounts-google

@@ -67,10 +67,6 @@ img {
   bottom: 0;
 }
 
-h2.checked {
-  font-weight: bold;
-}
-
 .new-doc input {
   box-sizing: border-box;
   padding: 10px 0;
